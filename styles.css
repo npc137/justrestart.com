@@ -26,12 +26,39 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* High contrast focus for better visibility */
+@media (prefers-contrast: high) {
+
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 4px solid #000;
+    outline-offset: 3px;
+  }
+}
 a {
     text-decoration: none;
     text-transform: none;
     color: #4a90e2;
 }
 
+/* Better link accessibility */
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
 footer {
     float: left;
     width: 100%;
@@ -57,12 +84,14 @@ footer a {
     text-decoration: underline;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:focus {
     text-decoration: none;
 }
 
 body {
-    line-height: 1;
+    line-height: 1.6;
+      /* Improved line height for readability */
     font-family: 'Lato', ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -73,6 +102,23 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    scroll-behavior: smooth;
+      /* Smooth scrolling */
+    }
+    
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      body {
+        scroll-behavior: auto;
+      }
+    
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
 }
 
 blockquote, q {
@@ -92,8 +138,12 @@ table {
 
 p {
     color: #15171a;
-    font-size: 17px;
-    line-height: 31px;
+    font-size: clamp(16px, 4vw, 17px);
+      /* Responsive font size */
+      line-height: 1.6;
+      /* Better line height for readability */
+      margin-bottom: 1em;
+      /* Better spacing */
 }
 
 strong {
@@ -112,6 +162,8 @@ footer, .container {
     max-width: 1100px;
     height: auto;
     margin: 60px auto;
+    padding: 0 20px;
+      /* Add padding for mobile */
 }
 
 .hero {
@@ -123,13 +175,22 @@ footer, .container {
     .hero {
         margin: 60px auto;
     }
+                                footer,
+                                .container {
+                                  padding: 15px 20px;
+                                  /* Better mobile padding */
+                                  margin: 30px auto;
+                                }
 }
 
 h1.name {
-    font-size: 94px;
+    font-size: clamp(40px, 8vw, 94px);
+      /* Responsive font size */
     font-weight: 700;
     display: inline-block;
     text-decoration-color: #fff;
+    line-height: 1.1;
+      /* Better line height */
 }
 
 #strike {
@@ -140,49 +201,147 @@ h1.name {
 
 .subtitle {
     display: block;
-    font-size: 24px;
+    font-size: clamp(18px, 4vw, 24px);
+      /* Responsive font size */
     font-weight: 300;
     color: #81899c;
     margin-top: 10px;
 }
 
 .lead {
-    font-size: 44px;
+    font-size: clamp(24px, 5vw, 44px);
+      /* Responsive font size */
     font-weight: 300;
     margin-top: 60px;
-    line-height: 55px;
+    line-height: 1.3;
+      /* Better line height */
+    }
+    
+    /* Important notice styles */
+    .important-notice {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      border: 2px solid #f39c12;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 40px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+      animation: gentle-pulse 3s ease-in-out infinite;
+    }
+    
+    .notice-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    
+    .notice-content {
+      flex: 1;
+      font-size: clamp(16px, 4vw, 18px);
+      line-height: 1.5;
+      color: #8b4513;
+    }
+    
+    .notice-content strong {
+      color: #d68910;
+      font-weight: 700;
+    }
+    
+    @keyframes gentle-pulse {
+    
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+      }
+    
+      50% {
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(243, 156, 18, 0.3);
+      }
+    }
+    
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .important-notice {
+        animation: none;
+      }
+    }
+    
+    /* Mobile adjustments for the notice */
+    @media (max-width: 768px) {
+      .important-notice {
+        padding: 20px;
+        margin: 30px 0;
+        gap: 12px;
+      }
+    
+      .notice-icon {
+        font-size: 24px;
+      }
 }
 
 .sections {
-    vertical-align: top;
-    display: inline-block;
-    min-height: 50px;
-}
-
-.sectionleft {
-    width: 40%;
-}
-
-.sectionright {
-    width: 59%;
+    display: block;
+      /* Changed from inline-block for better mobile */
+      min-height: 50px;
+      margin-bottom: 2rem;
+      /* Better spacing */
+    }
+    
+    /* Desktop layout */
+    @media (min-width: 769px) {
+      .sections {
+        display: inline-block;
+        vertical-align: top;
+        }
+        
+        .sectionleft {
+          width: 40%;
+        margin-right: 5%;
+        
+        
+          .sectionright {
+            width: 55%;
+          }
+        }
+        
+        /* Mobile layout */
+        @media (max-width: 768px) {
+          .sections {
+            width: 100%;
+            margin-bottom: 3rem;
+                  
+                                    .sectionleft,
+                                        .sectionright {
+            width: 100%;
+            }
 }
 
 .section-title {
-    font-size: 28px;
+    font-size: clamp(20px, 5vw, 28px);
+      /* Responsive font size */
     font-weight: 600;
     margin-bottom: 15px;
+    line-height: 1.3;
 }
 
 .list-card.example {
-    margin: 30px 80px;
-    padding: 25px 25px 10px 25px;
+    margin: 30px 0 30px 0;
+      /* Better mobile margins */
+      padding: 25px;
     border-radius: 10px;
     background: #ffffff;
     box-shadow: -20px 20px 60px #d9d9d9, 20px -20px 60px #ffffff;
 }
 
-.list-card.example {
-    margin-left: 0;
+/* Desktop specific margins for examples */
+@media (min-width: 769px) {
+    .list-card.example {
+        margin: 30px 80px 30px 0;
+        }
 }
 
 .list-card .exp,
@@ -223,18 +382,24 @@ h1.name {
 
 .container ul {
     list-style: none;
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 18px);
+      /* Responsive font size */
     color: #616061;
-    line-height: 24px;
+    line-height: 1.6;
+      /* Better line height */
     margin-bottom: 16px;
-    margin-left: 20px;
+    margin-left: 0;
+      margin-right: 20px;
     margin-top: -20px;
     opacity: 70%;
+    padding-left: 0;
+      /* Remove default padding */
 }
 
-.container ul {
-    margin-left: 0;
-    margin-right: 20px;
+.container ul li {
+  margin-bottom: 0.5em;
+  /* Better spacing between list items */
+  padding-left: 0;
 }
 
 .nonos ul li:before {
@@ -254,7 +419,7 @@ h1.name {
     opacity: 100% !important;
 }
 
-/* System message styles */
+/* System message styles - Enhanced for accessibility */
 .system-message {
     padding: 15px;
     margin-bottom: 15px;
@@ -262,99 +427,115 @@ h1.name {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    border: 1px solid transparent;
+      /* Better for high contrast mode */
 }
 
 .system-message.error {
     background-color: #fef2f2;
     border-left: 4px solid #dc2626;
+    border-color: #dc2626;
+      /* High contrast support */
 }
 
 .system-message.success {
     background-color: #f0fdf4;
     border-left: 4px solid #16a34a;
+    border-color: #16a34a;
+      /* High contrast support */
 }
 
 .system-message .icon {
     font-size: 20px;
     flex-shrink: 0;
+    line-height: 1;
+      /* Better alignment */
 }
 
 .system-message .content {
     flex: 1;
+    min-width: 0;
+      /* Prevent overflow */
 }
 
 .system-message .title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
+      /* Responsive font size */
     color: #1d1c1d;
     margin-bottom: 4px;
+    line-height: 1.3;
 }
 
 .system-message .message {
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
+      /* Responsive font size */
     color: #1d1c1d;
     margin-bottom: 2px;
+    line-height: 1.4;
 }
 
 .system-message .timestamp {
-    font-size: 14px;
+    font-size: clamp(12px, 3vw, 14px);
+      /* Responsive font size */
     color: #616061;
     font-style: italic;
+    line-height: 1.3;
 }
 
-/* Media queries */
+/* Enhanced media queries for better mobile experience */
 @media (max-width: 1024px) {
     footer, .container {
-        padding: 15px;
-        margin: 0px auto;
+        padding: 15px 20px;
+          margin: 30px auto;
+        }
+        
+        .hero {
+          margin: 60px auto;
     }
 }
 
 @media (max-width: 768px) {
     footer, .container {
-        padding: 15px;
-        margin: 0px auto;
+        padding: 15px 20px;
+          margin: 20px auto;
     }
     
     .sections {
         width: 100%;
-        height: auto;
-        margin: 100px 0;
-        float: left;
+        margin-bottom: 3rem;
+          float: none;
+          /* Remove float for modern layout */
     }
     
     .list-card.example {
-        margin: 30px 10px -20px 0;
-        padding: 25px 25px 10px 25px;
-        border-radius: 10px;
+        margin: 30px 0;
+          padding: 20px;
     }
     
-    .section-title {
-        font-size: 20px;
+                                .section-title {
         margin-top: 20px;
     }
     
     .yepyep .section-title {
-        margin-top: 80px;
-    }
-}
-
+        margin-top: 40px;
+          /* Reduced from 80px for better mobile spacing */
+        }
+        
+        /* Better mobile typography */
+        .lead {
+          margin-top: 40px;
+          line-height: 1.4;
+        
+          .subtitle {
+            margin-top: 15px;
+          }
+        }
 @media (max-width: 425px) {
-    h1.name {
-        font-size: 40px;
-    }
-    
     .sections {
         width: 100%;
-        height: auto;
-        margin: 10px 0;
-        float: left;
-    }
-    
-    .lead {
-        margin-top: 40px;
-        font-size: 20px;
-        line-height: 28px;
+        margin: 20px 0;
+          float: none;
     }
     
     footer, .container {
@@ -363,8 +544,11 @@ h1.name {
     }
     
     footer {
-        padding: 150px 15px 80px 15px !important;
+        padding: 60px 15px 40px 15px !important;
+          /* Reduced footer padding for mobile */
         margin-top: -30px !important;
+        font-size: clamp(12px, 3vw, 14px);
+          /* Responsive footer text */
     }
     
     .system-message {
@@ -377,16 +561,38 @@ h1.name {
         font-size: 18px;
     }
     
-    .system-message .title {
-        font-size: 14px;
+                                .hero {
+                                  margin: 40px auto 60px auto;
+                                  /* Better mobile hero spacing */
+                                }
+                
+                                .list-card.example {
+                                  padding: 15px;
+                                  /* Smaller padding on very small screens */
+                                  margin: 20px 0;
+                                }
+                
+                                /* Better mobile text spacing */
+                                .container ul li {
+                                  margin-bottom: 0.75em;
+                                }
+                                }
+                
+                                /* Extra small screens */
+                                @media (max-width: 320px) {
+                
+                                  .container,
+                                  footer {
+                                    padding: 0 10px;
     }
     
-    .system-message .message {
-        font-size: 14px;
+                                .system-message {
+                                  padding: 10px;
+                                  gap: 6px;
     }
     
-    .system-message .timestamp {
-        font-size: 12px;
+                                .list-card.example {
+                                  padding: 12px;
     }
 }
 
@@ -444,3 +650,121 @@ h1.name {
     background-color: ButtonFace;
   }
 }
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+          body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+          }
+    
+          p {
+            color: #e0e0e0;
+          }
+    
+          .subtitle {
+            color: #b0b0b0;
+          }
+    
+          .list-card.example {
+            background-color: #2a2a2a;
+            box-shadow: -10px 10px 30px #0a0a0a, 10px -10px 30px #3a3a3a;
+          }
+    
+          .system-message.error {
+            background-color: #2a1a1a;
+            border-color: #ff6b6b;
+          }
+    
+          .system-message.success {
+            background-color: #1a2a1a;
+            border-color: #51cf66;
+          }
+    
+          .system-message .title,
+          .system-message .message {
+            color: #e0e0e0;
+          }
+    
+          footer {
+            background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(42, 42, 42, 1) 45%);
+            color: #b0b0b0;
+          }
+    
+          footer p {
+            color: #b0b0b0;
+          }
+        }
+    
+        /* Print styles */
+        @media print {
+          #preloadimg {
+            display: none;
+          }
+    
+          body {
+            background: white;
+            color: black;
+            font-size: 12pt;
+            line-height: 1.4;
+          }
+    
+          .system-message {
+            border: 1px solid #000;
+            background: white;
+            box-shadow: none;
+          }
+    
+          .list-card.example {
+            box-shadow: none;
+            border: 1px solid #ccc;
+          }
+    
+          a {
+            color: #000;
+            text-decoration: underline;
+          }
+    
+          /* Show URLs for links */
+          a[href]:after {
+            content: " (" attr(href) ")";
+            font-size: 10pt;
+          }
+        }
+    
+        /* High contrast mode improvements */
+        @media (prefers-contrast: high) {
+          .system-message {
+            border-width: 2px;
+          }
+    
+          .system-message.error {
+            border-color: #000;
+            background-color: #fff;
+          }
+    
+          .system-message.success {
+            border-color: #000;
+            background-color: #fff;
+          }
+    
+          .list-card.example {
+            border: 2px solid #000;
+            background-color: #fff;
+            box-shadow: none;
+          }
+        }
+    
+        /* Focus visible for better keyboard navigation */
+        @supports selector(:focus-visible) {
+    
+          a:focus:not(:focus-visible),
+          button:focus:not(:focus-visible) {
+            outline: none;
+          }
+    
+          a:focus-visible,
+          button:focus-visible {
+            outline: 3px solid #4a90e2;
+            outline-offset: 2px;
+          }
+        }

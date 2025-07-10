@@ -6,8 +6,8 @@ let restartCodePosition = 0;
 
 // Initialize the typed animation for the strike-through text
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize if Typed.js is loaded
-    if (typeof Typed !== 'undefined') {
+    // Only initialize if Typed.js is loaded and user doesn't prefer reduced motion
+    if (typeof Typed !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const typed = new Typed('#strike', {
             strings: [
                 'restart',
@@ -31,6 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typed.cursor != null) {
             typed.cursor.classList.add('typed-cursor--blink');
         }
+    }
+    
+    // Set up focus management for any internal links
+    const links = document.querySelectorAll('a[href^="#"]');
+    for (const link of links) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                target.focus();
+            }
+        });
     }
 });
 
@@ -56,6 +69,12 @@ function activateRestartMode() {
         }
     }
 
+    // Style the typing text to match the green theme
+    const strikeElement = document.getElementById('strike');
+    if (strikeElement) {
+        strikeElement.style.cssText = 'color: #00ff00 !important; text-shadow: 0 0 10px #00ff00;';
+    }
+
     // Style the footer
     document.getElementsByTagName('footer')[0].style.cssText =
         'background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 45%) !important; color: #00ff00 !important;';
@@ -71,6 +90,12 @@ function activateRestartMode() {
     const subtitle = document.getElementsByClassName('subtitle')[0];
     if (subtitle) {
         subtitle.style.cssText = 'color: #00ff00 !important; opacity: 80%;';
+    }
+
+    // Style the important notice to fit the theme
+    const notice = document.getElementsByClassName('important-notice')[0];
+    if (notice) {
+        notice.style.cssText = 'background: #000 !important; border: 2px solid #00ff00 !important; color: #00ff00 !important; box-shadow: 0 0 20px #00ff00 !important;';
     }
 }
 
@@ -101,8 +126,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Add some smooth scrolling for better UX
+// Add smooth scrolling for better UX (respecting motion preferences)
 document.addEventListener('DOMContentLoaded', function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     // Smooth scroll for any internal links
     const links = document.querySelectorAll('a[href^="#"]');
     for (const link of links) {
@@ -111,15 +138,29 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
+                
+                // Set focus for accessibility
+                target.focus();
             }
         });
     }
 });
 
-// Add a subtle animation to system messages when they come into view
+// Add a subtle animation to system messages when they come into view (respecting motion preferences)
 document.addEventListener('DOMContentLoaded', function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+        // For users who prefer reduced motion, just make elements visible immediately
+        const systemMessages = document.querySelectorAll('.system-message');
+        systemMessages.forEach(function(message) {
+            message.style.opacity = '1';
+        });
+        return;
+    }
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
