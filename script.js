@@ -97,6 +97,18 @@ function activateRestartMode() {
     if (notice) {
         notice.style.cssText = 'background: #000 !important; border: 2px solid #00ff00 !important; color: #00ff00 !important; box-shadow: 0 0 20px #00ff00 !important;';
     }
+    
+    // Style the notice card container
+    const noticeCard = document.getElementsByClassName('important-notice-card')[0];
+    if (noticeCard) {
+        noticeCard.style.cssText = 'background: #000 !important; box-shadow: 0 0 30px #00ff00 !important;';
+    }
+    
+    // Style the notice title
+    const noticeTitle = document.getElementsByClassName('notice-title')[0];
+    if (noticeTitle) {
+        noticeTitle.style.cssText = 'color: #00ff00 !important;';
+    }
 }
 
 // Add keydown event listener for the easter egg

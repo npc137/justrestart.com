@@ -217,36 +217,69 @@ h1.name {
       /* Better line height */
     }
     
-    /* Important notice styles */
+        /* Important notice section and card styles */
+        .notice-section {
+          margin: 60px auto;
+          max-width: 900px;
+        }
+    
+        .important-notice-card {
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          margin: 0 auto;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .important-notice-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
     .important-notice {
-      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-      border: 2px solid #f39c12;
-      border-radius: 12px;
-      padding: 25px;
-      margin: 40px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
-      animation: gentle-pulse 3s ease-in-out infinite;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+          border: 2px solid #f39c12;
+          border-radius: 12px;
+        padding: 40px;
+          margin: 0;
+          display: flex;
+          align-items: flex-start;
+        gap: 20px;
+          box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+          animation: gentle-pulse 3s ease-in-out infinite;
     }
     
     .notice-icon {
-      font-size: 28px;
-      flex-shrink: 0;
-      line-height: 1;
+        font-size: 32px;
+          flex-shrink: 0;
+          line-height: 1;
     }
     
     .notice-content {
-      flex: 1;
-      font-size: clamp(16px, 4vw, 18px);
-      line-height: 1.5;
-      color: #8b4513;
+        flex: 1;
+          font-size: clamp(16px, 4vw, 18px);
+        line-height: 1.6;
+          color: #8b4513;
     }
     
+        .notice-title {
+          margin: 0 0 15px 0;
+          font-size: clamp(20px, 5vw, 24px);
+          font-weight: 700;
+          color: #d68910;
+          line-height: 1.3;
+        }
+    
+        .notice-content p {
+          margin: 0 0 15px 0;
+        }
+    
+        .notice-content p:last-child {
+          margin-bottom: 0;
+        }
     .notice-content strong {
-      color: #d68910;
-      font-weight: 700;
+        color: #d68910;
+          font-weight: 700;
     }
     
     @keyframes gentle-pulse {
@@ -265,23 +298,52 @@ h1.name {
     
     /* Respect reduced motion preferences */
     @media (prefers-reduced-motion: reduce) {
-      .important-notice {
-        animation: none;
-      }
+        .important-notice {
+            animation: none;
+          }
+                .important-notice-card:hover {
+                  transform: none;
+                }
     }
     
     /* Mobile adjustments for the notice */
     @media (max-width: 768px) {
-      .important-notice {
-        padding: 20px;
-        margin: 30px 0;
-        gap: 12px;
-      }
-    
-      .notice-icon {
-        font-size: 24px;
-      }
-}
+        .notice-section {
+            margin: 40px auto;
+          }
+                .important-notice {
+            padding: 30px;
+              gap: 15px;
+            }
+            
+            .notice-icon {
+              font-size: 28px;
+            }
+            
+            .notice-title {
+              font-size: 20px;
+            }
+            
+            .notice-content {
+              font-size: 16px;
+            }
+            }
+            
+            /* Even smaller mobile adjustments */
+            @media (max-width: 480px) {
+              .notice-section {
+                margin: 30px auto;
+              }
+            
+              .important-notice {
+                padding: 25px;
+                gap: 12px;
+              }
+            
+              .notice-icon {
+                font-size: 24px;
+              }
+            }
 
 .sections {
     display: block;
@@ -621,114 +683,140 @@ h1.name {
 
 /* Modern forced colors support for accessibility */
 @media (forced-colors: active) {
-  .system-message.error {
-    border-color: ButtonText;
-    background-color: ButtonFace;
+    .system-message.error {
+        border-color: ButtonText;
+        background-color: ButtonFace;
+      }
+    
+      .system-message.success {
+        border-color: ButtonText;
+        background-color: ButtonFace;
+      }
+    
+      .system-message .title,
+      .system-message .message,
+      .system-message .timestamp {
+        color: ButtonText;
+      }
+    
+      #strike {
+        color: LinkText;
+      }
+    
+      footer a {
+        color: LinkText;
+      }
+    
+      .list-card.example {
+        border-color: ButtonText;
+        background-color: ButtonFace;
+      }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
   }
 
-  .system-message.success {
-    border-color: ButtonText;
-    background-color: ButtonFace;
+  p {
+    color: #e0e0e0;
   }
 
-  .system-message .title,
-  .system-message .message,
-  .system-message .timestamp {
-    color: ButtonText;
-  }
-
-  #strike {
-    color: LinkText;
-  }
-
-  footer a {
-    color: LinkText;
+  .subtitle {
+    color: #b0b0b0;
   }
 
   .list-card.example {
-    border-color: ButtonText;
-    background-color: ButtonFace;
+    background-color: #2a2a2a;
+    box-shadow: -10px 10px 30px #0a0a0a, 10px -10px 30px #3a3a3a;
   }
-}
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-          body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-          }
-    
-          p {
-            color: #e0e0e0;
-          }
-    
-          .subtitle {
-            color: #b0b0b0;
-          }
-    
-          .list-card.example {
-            background-color: #2a2a2a;
-            box-shadow: -10px 10px 30px #0a0a0a, 10px -10px 30px #3a3a3a;
-          }
-    
-          .system-message.error {
-            background-color: #2a1a1a;
-            border-color: #ff6b6b;
-          }
-    
-          .system-message.success {
-            background-color: #1a2a1a;
-            border-color: #51cf66;
-          }
-    
-          .system-message .title,
-          .system-message .message {
-            color: #e0e0e0;
-          }
-    
-          footer {
-            background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(42, 42, 42, 1) 45%);
-            color: #b0b0b0;
-          }
-    
-          footer p {
-            color: #b0b0b0;
-          }
+
+  .system-message.error {
+    background-color: #2a1a1a;
+    border-color: #ff6b6b;
+  }
+
+  .system-message.success {
+    background-color: #1a2a1a;
+    border-color: #51cf66;
+  }
+
+  .system-message .title,
+  .system-message .message {
+    color: #e0e0e0;
+  }
+
+  footer {
+    background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(42, 42, 42, 1) 45%);
+    color: #b0b0b0;
+  }
+
+  footer p {
+    color: #b0b0b0;
+  }
         }
     
+                /* Dark mode support for notice elements */
+                @media (prefers-color-scheme: dark) {
+                  .important-notice-card {
+                    background: #2a2a2a;
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                  }
+        
+                  .important-notice {
+                    background: linear-gradient(135deg, #3d3520 0%, #4a4121 100%);
+                    border-color: #d68910;
+                    color: #e0e0e0;
+                  }
+        
+                  .notice-title {
+                    color: #ffd700;
+                  }
+        
+                  .notice-content {
+                    color: #e0e0e0;
+                  }
+        
+                  .notice-content strong {
+                    color: #ffd700;
+                  }
+                }
         /* Print styles */
         @media print {
-          #preloadimg {
-            display: none;
-          }
-    
-          body {
-            background: white;
-            color: black;
-            font-size: 12pt;
-            line-height: 1.4;
-          }
-    
-          .system-message {
-            border: 1px solid #000;
-            background: white;
-            box-shadow: none;
-          }
-    
-          .list-card.example {
-            box-shadow: none;
-            border: 1px solid #ccc;
-          }
-    
-          a {
-            color: #000;
-            text-decoration: underline;
-          }
-    
-          /* Show URLs for links */
-          a[href]:after {
-            content: " (" attr(href) ")";
-            font-size: 10pt;
-          }
+            #preloadimg {
+                display: none;
+              }
+            
+              body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+                line-height: 1.4;
+              }
+            
+              .system-message {
+                border: 1px solid #000;
+                background: white;
+                box-shadow: none;
+              }
+            
+              .list-card.example {
+                box-shadow: none;
+                border: 1px solid #ccc;
+              }
+            
+              a {
+                color: #000;
+                text-decoration: underline;
+              }
+            
+              /* Show URLs for links */
+              a[href]:after {
+                content: " (" attr(href) ")";
+                font-size: 10pt;
+              }
         }
     
         /* High contrast mode improvements */
@@ -755,16 +843,16 @@ h1.name {
         }
     
         /* Focus visible for better keyboard navigation */
-        @supports selector(:focus-visible) {
-    
-          a:focus:not(:focus-visible),
-          button:focus:not(:focus-visible) {
-            outline: none;
-          }
-    
-          a:focus-visible,
-          button:focus-visible {
-            outline: 3px solid #4a90e2;
-            outline-offset: 2px;
-          }
-        }
+                @supports selector(:focus-visible) {
+            a:focus:not(:focus-visible),
+              button:focus:not(:focus-visible) {
+                outline: none;
+              }
+            
+              a:focus-visible,
+              button:focus-visible {
+                outline: 3px solid #4a90e2;
+                outline-offset: 2px;
+              }
+                }
+                }

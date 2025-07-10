@@ -92,7 +92,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Acknowledgments (Standing on the Shoulders of Giants)
 
-- Inspired by [nohello.net](https://nohello.net/) by [@notjosh](https://github.com/notjosh) (the OG of polite internet education)
+- Inspired by [nohello.net](https://nohello.net/)
 - Built for all the computers that desperately need a digital nap
 - Vibe coded with ❤️ and several strategic restarts during development
 - Special thanks to all the overworked computers that inspired this project
