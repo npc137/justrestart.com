@@ -72,32 +72,6 @@ function activateRestartMode() {
     if (subtitle) {
         subtitle.style.cssText = 'color: #00ff00 !important; opacity: 80%;';
     }
-
-    // Add a "system restarting" message
-    setTimeout(() => {
-        const restartMessage = document.createElement('div');
-        restartMessage.innerHTML = `
-            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                        background: #000; color: #00ff00; padding: 20px; border: 2px solid #00ff00; 
-                        font-family: monospace; font-size: 18px; z-index: 1000; text-align: center;
-                        box-shadow: 0 0 20px #00ff00;">
-                <div>🔄 SYSTEM RESTART INITIATED</div>
-                <div style="margin-top: 10px; font-size: 14px;">Press any key to continue...</div>
-            </div>
-        `;
-        document.body.appendChild(restartMessage);
-
-        // Remove the message after 3 seconds or on key press
-        const removeMessage = () => {
-            if (restartMessage.parentNode) {
-                restartMessage.parentNode.removeChild(restartMessage);
-            }
-            document.removeEventListener('keydown', removeMessage);
-        };
-
-        document.addEventListener('keydown', removeMessage);
-        setTimeout(removeMessage, 3000);
-    }, 1000);
 }
 
 // Add keydown event listener for the easter egg
