@@ -2,7 +2,7 @@
 
 **Your computer needs a fresh start too!**
 
-A simple website explaining why you should restart your computer periodically, inspired by the wonderful [nohello.net](https://nohello.net/).
+A simple website explaining why you should restart your computer periodically, inspired by [nohello.net](https://nohello.net/).
 
 ## The Problem
 
