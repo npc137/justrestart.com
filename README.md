@@ -31,6 +31,14 @@ Regular restarts provide:
 - System message mockups showing before/after scenarios
 - Educational content about computer maintenance
 
+## For Mac Admins 🍎
+
+Managing a fleet of Macs that haven't been restarted since the last macOS update? Your users probably think "restart" is just a fancy button that does nothing! 
+
+Check out [Renew](https://github.com/SecondSonConsulting/Renew) - a script that can help automate restarts across your Mac fleet. Because sometimes you need to be the parent who says "bedtime!" to hundreds of computers at once.
+
+*Warning: May cause sudden increases in user productivity and mysterious disappearances of "my computer is slow" tickets.*
+
 ## Tech Stack
 
 - Pure HTML, CSS, and JavaScript
@@ -56,14 +64,6 @@ This site can be deployed to any static hosting service:
 ## Contributing
 
 Feel free to submit issues and enhancement requests!
-
-## For Mac Admins 🍎
-
-Managing a fleet of Macs that haven't been restarted since the last macOS update? Your users probably think "restart" is just a fancy button that does nothing! 
-
-Check out [Renew](https://github.com/SecondSonConsulting/Renew) - a script that can help automate restarts across your Mac fleet. Because sometimes you need to be the parent who says "bedtime!" to hundreds of computers at once.
-
-*Warning: May cause sudden increases in user productivity and mysterious disappearances of "my computer is slow" tickets.*
 
 ## License
 
