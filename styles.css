@@ -412,3 +412,35 @@ h1.name {
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+/* Modern forced colors support for accessibility */
+@media (forced-colors: active) {
+  .system-message.error {
+    border-color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  .system-message.success {
+    border-color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  .system-message .title,
+  .system-message .message,
+  .system-message .timestamp {
+    color: ButtonText;
+  }
+
+  #strike {
+    color: LinkText;
+  }
+
+  footer a {
+    color: LinkText;
+  }
+
+  .list-card.example {
+    border-color: ButtonText;
+    background-color: ButtonFace;
+  }
+}
