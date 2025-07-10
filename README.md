@@ -42,7 +42,7 @@ Regular restarts provide your computer with:
 
 Managing a fleet of Macs that haven't been restarted since the last macOS update? Your users probably think "restart" is just a fancy button that does nothing! 
 
-Check out [Renew](https://github.com/SecondSonConsulting/Renew) - a script that can help automate restarts across your Mac fleet. Because sometimes you need to be the parent who says "bedtime!" to hundreds of computers at once.
+Check out [Renew](https://github.com/SecondSonConsulting/Renew) - a script that gently (or not so gently) reminds users to restart on a defined schedule. It respects user agency by never forcing a restart without consent - think of it as the polite but persistent friend who reminds you to go to bed instead of dragging you there.
 
 *Warning: May cause sudden increases in user productivity and mysterious disappearances of "my computer is slow" tickets.*
 
